@@ -34,6 +34,7 @@ const FILTERS = {
     { id: "nightjars", label: "Nightjars" },
     { id: "corvids", label: "Corvids" },
     { id: "wrens", label: "Wrens" },
+    { id: "cranes-herons", label: "Cranes & herons" },
   ],
 };
 
