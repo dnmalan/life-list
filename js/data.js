@@ -81,7 +81,7 @@ const SPECIES = [
     types: ["waterfowl"],
     photos: [
       {
-        src: "/images/birds/mallard-1.jpg",
+        src: "images/birds/mallard-1.jpg",
         alt: "Mallard pair hanging out on a log.",
         date: "2024-05-12",
         location: "Kansas City, MO, USA",
