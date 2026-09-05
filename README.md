@@ -1,47 +1,67 @@
 # Life List
 
-A photography site for your bird "life list," built as a plain HTML/CSS/JS
-site so it runs directly on GitHub Pages — no build step, no framework.
+A photography site for your "life list," built as a plain HTML/CSS/JS site
+so it runs directly on GitHub Pages — no build step, no framework.
 
 ## What's in here
 
 ```
 life-list-site/
-├── index.html          the page structure
-├── css/style.css        all styling
-├── js/photos-data.js    ← YOU EDIT THIS to add photos and tags
-├── js/app.js            filtering logic (rarely needs edits)
-└── images/birds/        put your real photo files here
+├── index.html         homepage — one section per kind (Birds, later Mammals...),
+│                       capped to 8 species each, with filters
+├── species.html        a species' detail page — all its photos + lightbox
+├── all.html             "see all" page for one kind — every species, filterable,
+│                       no cap (linked from the homepage's "See all Birds →")
+├── css/style.css       all styling
+├── js/data.js          ← YOU EDIT THIS to add species, photos, and tags
+├── js/shared.js        filter-bar + cover-card builders shared by home/all pages
+├── js/home.js          homepage rendering logic (rarely needs edits)
+├── js/all.js           "see all" page logic (rarely needs edits)
+├── js/species.js       species-page + lightbox logic (rarely needs edits)
+└── images/birds/       put your real photo files here
 ```
 
-Right now `photos-data.js` is filled with 8 placeholder photos (via
-picsum.photos) so you can see the filtering work immediately. Replace them
-with your own.
+The model is **species-first**: each species (e.g. "Mallard") can have
+several photos, taken at different times/places. The homepage shows one
+cover photo per species. Click it to see every photo of that species;
+click any of those to see it enlarged with its full caption.
 
-## Adding a photo
+`js/data.js` currently has 10 placeholder bird species (via picsum.photos)
+so you can see everything working immediately — multiple photos per
+species, the 8-item homepage cap (2 species are hidden until you filter or
+raise the cap), and the lightbox. Replace them with your own.
 
-1. Drop the image file into `images/birds/` (e.g. `great-blue-heron.jpg`).
-   Export at roughly 1200px on the long edge — plenty sharp for the web,
-   and small enough to load fast.
-2. Open `js/photos-data.js` and add an entry to the `PHOTOS` array:
+## Adding a new photo to a species you already have
+
+1. Drop the image file into `images/birds/` (e.g. `mallard-4.jpg`).
+   Export at roughly 1200px on the long edge.
+2. Open `js/data.js`, find that species in the `SPECIES` array, and add an
+   entry to its `photos` array:
 
    ```js
    {
-     number: "009",
-     src: "images/birds/great-blue-heron.jpg",
-     alt: "Great blue heron wading in shallow water",
-     species: "Great Blue Heron",
-     scientific: "Ardea herodias",
-     location: "united-states",
-     types: ["waterfowl"],
+     src: "images/birds/mallard-4.jpg",
+     alt: "Mallard pair swimming at dusk",
+     date: "2025-03-14",
+     location: "Lake Merritt, Oakland, California, USA",
+     locationTag: "united-states",
+     notes: "Spotted this pair just after sunrise.",
    },
    ```
-3. Save, commit, and push. That's it — no other file needs to change.
+3. Save, commit, push. `notes` is optional — leave it `""` to omit it from
+   the caption.
+
+## Adding a whole new species
+
+Copy an existing entry in the `SPECIES` array, give it a new unique `slug`
+(this becomes its URL: `species.html?slug=your-slug`), and fill in its
+name, scientific name, `types`, and at least one photo. It'll automatically
+appear on the homepage (subject to the 8-item cap and any active filters).
 
 ## Adding a new tag (Location or Bird Type)
 
-Open the `FILTERS` object at the top of `js/photos-data.js` and add a line,
-e.g. to add "Oceania" as a location:
+Open the `FILTERS.birds` object in `js/data.js` and add a line, e.g. to add
+"Oceania" as a location:
 
 ```js
 location: [
@@ -53,21 +73,22 @@ location: [
 ],
 ```
 
-Use that same `id` (lowercase, dashes for spaces) in any photo's `location`
-or `types` field. The filter button appears automatically — nothing in
-`app.js` or `index.html` needs to change.
+Use that same `id` in a species' `types` field, or a photo's `locationTag`.
+The filter button appears automatically.
 
-## Adding a whole new section later (e.g. "Mammals")
+## Changing how many photos show on the homepage
 
-The site is currently one section ("Birds"). To add a second section down
-the road, the cleanest approach is:
-- Duplicate the `<section class="section">...</section>` block in
-  `index.html`, give it a new `id`/heading (e.g. "Mammals")
-- Give it its own filter bar + grid container with new element `id`s
-- Duplicate the `FILTERS`/`PHOTOS` pattern in a second data file (e.g.
-  `photos-data-mammals.js`) and a second small init call in `app.js`
+Edit `HOMEPAGE_LIMIT` near the top of `js/data.js` (currently `8`).
 
-Happy to build that out with you once you're ready — just flag it.
+## Adding a whole new kind (e.g. "Mammals")
+
+1. In `js/data.js`, uncomment/add a line in `KINDS`: `{ id: "mammals", label: "Mammals" }`
+2. Add a matching `FILTERS.mammals = { typeLabel: "Mammal Type", location: [...], type: [...] }`
+3. Add `SPECIES` entries with `kind: "mammals"`, each with its own photos.
+
+`index.html` builds a new homepage section automatically — no HTML edits
+needed. Put mammal photos in a new `images/mammals/` folder to keep things
+tidy.
 
 ---
 
