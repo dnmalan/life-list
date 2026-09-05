@@ -39,14 +39,14 @@ const FILTERS = {
 
 const PHOTOS = [
   {
-    number: "001",
-    src: "https://picsum.photos/seed/mallard/700/560",
-    alt: "Mallard drake resting on calm water",
-    species: "Mallard",
-    scientific: "Anas platyrhynchos",
-    location: "united-states",
-    types: ["waterfowl"],
-  },
+  number: "001",
+  src: "images/birds/_DSC9924.jpg",
+  alt: "Whooping crane standing in marshy field.",
+  species: "Whooping crane",
+  scientific: "Grus americana",
+  location: "united-states",
+  types: ["cranes-herons"],
+},,
   {
     number: "002",
     src: "https://picsum.photos/seed/egyptiangoose/700/560",
