@@ -81,12 +81,12 @@ const SPECIES = [
     types: ["waterfowl"],
     photos: [
       {
-        src: "https://picsum.photos/seed/mallard1/1000/750",
-        alt: "Mallard drake resting on calm water",
+        src: "mallard-1",
+        alt: "Mallard pair hanging out on a log.",
         date: "2024-05-12",
-        location: "Boulder Creek, Colorado, USA",
+        location: "Kansas City, MO, USA",
         locationTag: "united-states",
-        notes: "A drake preening in the early morning light, just after the ice had cleared.",
+        notes: "This mallard couple XXXX.",
       },
       {
         src: "https://picsum.photos/seed/mallard2/1000/750",
