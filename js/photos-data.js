@@ -41,7 +41,7 @@ const FILTERS = {
 const PHOTOS = [
   {
   number: "001",
-  src: "images/birds/_DSC9924.jpg",
+  src: "images/birds/_DSC9925-Enhanced-NR",
   alt: "Whooping crane standing in marshy field.",
   species: "Whooping crane",
   scientific: "Grus americana",
