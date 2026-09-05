@@ -47,7 +47,7 @@ const PHOTOS = [
   scientific: "Grus americana",
   location: "united-states",
   types: ["cranes-herons"],
-},,
+  },
   {
     number: "002",
     src: "https://picsum.photos/seed/egyptiangoose/700/560",
