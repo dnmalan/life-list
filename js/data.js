@@ -67,6 +67,7 @@ const FILTERS = {
       { id: "nightjars", label: "Nightjars" },
       { id: "corvids", label: "Corvids" },
       { id: "wrens", label: "Wrens" },
+      { id: "cranes-herons", label: "Cranes & herons" },
     ],
   },
 };
@@ -86,7 +87,7 @@ const SPECIES = [
         date: "2024-05-12",
         location: "Kansas City, MO, USA",
         locationTag: "united-states",
-        notes: "This mallard couple XXXX.",
+        notes: "",
       },
       {
         src: "https://picsum.photos/seed/mallard2/1000/750",
@@ -107,20 +108,20 @@ const SPECIES = [
     ],
   },
   {
-    slug: "egyptian-goose",
+    slug: "whooping-crane",
     kind: "birds",
     number: "002",
-    name: "Egyptian Goose",
-    scientific: "Alopochen aegyptiaca",
-    types: ["waterfowl"],
+    name: "Whooping crane",
+    scientific: "Grus americana",
+    types: ["cranes-herons"],
     photos: [
       {
-        src: "https://picsum.photos/seed/egyptiangoose1/1000/750",
-        alt: "Egyptian goose standing on riverbank",
+        src: "images/birds/whooping-crane-1.jpg",
+        alt: "Whooping crane standing in a marshy field",
         date: "2023-08-19",
-        location: "Nairobi National Park, Kenya",
-        locationTag: "africa",
-        notes: "Standing sentry on a termite mound, unbothered by a passing safari vehicle.",
+        location: "Texas, USA",
+        locationTag: "united-states",
+        notes: "Whooping cranes gather in a marshy field at a state park in Texas.",
       },
       {
         src: "https://picsum.photos/seed/egyptiangoose2/1000/750",
