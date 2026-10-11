@@ -135,7 +135,7 @@ const SPECIES = [
       {
         src: "images/birds/brown-pelican-7.jpg",
         alt: "Brown Pelican photographed in Aransas County, Texas",
-        date: "2022-11-08",
+        date: "2024-02-21",
         location: "Aransas County, Texas",
         locationTag: "united-states",
         notes: "Showing off full breeding plumage in the golden hour, Port Aransas jetties.",
