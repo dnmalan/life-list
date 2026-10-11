@@ -10,8 +10,21 @@
 (function () {
   const main = document.getElementById("kind-sections");
 
+  // Fisher–Yates shuffle on a copy of the array
+  function shuffle(list) {
+    const arr = list.slice();
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
   KINDS.forEach((kind) => {
-    const kindSpecies = getSpeciesByKind(kind.id);
+    // Shuffled once per page load, so visitors see a different selection each
+    // visit, but toggling filters doesn't reshuffle the grid under them.
+    // (The "See all" page keeps the regular numbered order.)
+    const kindSpecies = shuffle(getSpeciesByKind(kind.id));
     if (kindSpecies.length === 0) return;
 
     const activeFilters = { location: new Set(), type: new Set() };
