@@ -160,8 +160,6 @@ const SPECIES = [
       },
     ],
   },
-    ],
-  },
 ];
 
 /* ---- helpers used by home.js and species.js — no need to edit below ---- */
