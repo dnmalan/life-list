@@ -67,7 +67,8 @@ const FILTERS = {
       { id: "nightjars", label: "Nightjars" },
       { id: "corvids", label: "Corvids" },
       { id: "wrens", label: "Wrens" },
-      { id: "cranes-herons", label: "Cranes & herons" },
+      { id: "cranes-herons", label: "Cranes & herons" }
+      { id: "birds-prey", label: "Birds of prey" },
     ],
   },
 };
@@ -142,12 +143,12 @@ const SPECIES = [
     types: ["nightjars"],
     photos: [
       {
-        src: "https://picsum.photos/seed/nighthawk1/1000/750",
-        alt: "Common nighthawk camouflaged on a branch",
-        date: "2024-07-04",
-        location: "Sandia Foothills, New Mexico, USA",
+        src: "images/birds/no-photo-yet.jpg",
+        alt: "Placeholder: no photograph of this species yet",
+        date: "",
+        location: "",
         locationTag: "united-states",
-        notes: "Nearly walked past this one twice — the camouflage is remarkable at rest.",
+        notes: "",
       },
       {
         src: "https://picsum.photos/seed/nighthawk2/1000/750",
