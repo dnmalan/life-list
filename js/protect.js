@@ -13,7 +13,7 @@
 
 (function () {
   // >>> EDIT THIS: the name that appears in the copyright line <<<
-  const SITE_OWNER = "Your Name";
+  const SITE_OWNER = "Denise Malan";
 
   const year = new Date().getFullYear();
   document.querySelectorAll("[data-copyright]").forEach(function (el) {
