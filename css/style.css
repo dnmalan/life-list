@@ -666,3 +666,18 @@ body.lightbox-open {
   color: var(--ink-soft);
   text-transform: uppercase;
 }
+
+.site-footer .site-footer__copyright {
+  max-width: 620px;
+  margin: 10px auto 0;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+/* Make photos harder to drag or long-press-save (see js/protect.js) */
+img {
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
