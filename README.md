@@ -18,6 +18,10 @@ life-list-site/
 ├── js/home.js          homepage rendering logic (rarely needs edits)
 ├── js/all.js           "see all" page logic (rarely needs edits)
 ├── js/species.js       species-page + lightbox logic (rarely needs edits)
+├── js/protect.js       copyright footer + right-click/drag blocking on photos
+├── data/life-list-for-website.csv   your species/photo spreadsheet
+├── scripts/build_data.py            CSV -> js/data.js converter
+├── .github/workflows/deploy.yml     runs the converter + deploys on every push
 └── images/birds/       put your real photo files here
 ```
 
@@ -76,6 +80,35 @@ location: [
 Use that same `id` in a species' `types` field, or a photo's `locationTag`.
 The filter button appears automatically.
 
+## Species you don't have a photo of yet
+
+`images/birds/no-photo-yet.jpg` is a stock placeholder ("Seen it. Didn't get
+the shot."). Add the species with that file as its photo, and swap in a real
+photo whenever you get one:
+
+```js
+photos: [
+  {
+    src: "images/birds/no-photo-yet.jpg",
+    alt: "Placeholder: no photograph of this species yet",
+    date: "",
+    location: "",
+    locationTag: "united-states",
+    notes: "",
+  },
+],
+```
+
+Leave `date` and `location` empty and they simply don't appear in the caption.
+(Copy the file into `images/mammals/` etc. if you'd rather keep each kind's
+folder self-contained.)
+
+## Homepage order
+
+The homepage shows a random selection of each kind's species on every page
+load (see the `shuffle` call in `js/home.js`). The "See all" page always
+lists them in numbered order.
+
 ## Changing how many photos show on the homepage
 
 Edit `HOMEPAGE_LIMIT` near the top of `js/data.js` (currently `8`).
@@ -91,6 +124,28 @@ needed. Put mammal photos in a new `images/mammals/` folder to keep things
 tidy.
 
 ---
+
+## Updating the site from the spreadsheet (automatic)
+
+`data/life-list-for-website.csv` is the source of truth for species and
+photos. Every push to `main` runs `.github/workflows/deploy.yml`, which:
+
+1. runs `scripts/build_data.py` to rebuild the `SPECIES` block in `js/data.js`
+   from the CSV (stopping with a readable error if the CSV has a problem),
+2. commits the regenerated `js/data.js` if it changed, and
+3. publishes the site to GitHub Pages.
+
+Don't hand-edit the block between `// BEGIN GENERATED SPECIES` and
+`// END GENERATED SPECIES` in `js/data.js` — it's overwritten. `KINDS`,
+`FILTERS` and `HOMEPAGE_LIMIT` are still edited by hand. Every type or
+location id used in the CSV must exist in `FILTERS`.
+
+To preview locally: `python scripts/build_data.py`, then open `index.html`.
+
+**One-time setup:** in the repo go to Settings -> Pages -> Build and
+deployment -> Source and choose **GitHub Actions** (commits made by a workflow
+don't trigger the old "deploy from a branch" build). Your custom domain
+setting is kept; confirm it is still listed there afterwards.
 
 ## Publishing with GitHub Pages
 
@@ -140,3 +195,11 @@ Say your domain is `yourname.com` (or a subdomain like `photos.yourname.com`).
 
 That's the whole setup. Ping me if a step throws an error and I can help
 debug it.
+
+## Copyright footer and photo protection
+
+`js/protect.js` fills in the copyright line in each page's footer and blocks
+right-click "Save image as" and dragging on photos. Open it and change
+`SITE_OWNER` from "Your Name" to your name. This only deters casual saving;
+a watermark added when you export the JPEG is the only protection that stays
+with the file.
